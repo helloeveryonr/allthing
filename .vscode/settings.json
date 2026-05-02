@@ -1,0 +1,25 @@
+{
+    // --- 核心触发逻辑 ---
+    // 只有输入满 3 个字符才弹出提示（完美对应 acm）
+    "editor.quickSuggestionsMinChars": 3,
+    // 禁用回车补全，防止换行时误触发模板
+    "editor.acceptSuggestionOnEnter": "off",
+    // 启用 Tab 补全：输入 acm 后按 Tab 展开
+    "editor.tabCompletion": "on",
+    // 将模板提示混入代码建议中
+    "editor.snippetSuggestions": "inline",
+
+    // --- CPH 默认配置 ---
+    "cph.general.defaultLanguage": "python",
+    "cph.general.defaultExtension": "py",
+
+    // --- 界面清爽优化 ---
+    // 强制识别 Python
+    "files.associations": {
+        "*.py": "python"
+    },
+    // 关闭烦人的代码类型检查波浪线
+    "python.analysis.typeCheckingMode": "off",
+    // 自动格式化（可选，比赛中建议保持关闭或按需手动格式化）
+    "editor.formatOnSave": false
+}
