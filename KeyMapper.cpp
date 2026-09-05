@@ -3,7 +3,10 @@
 #define _UNICODE
 #include <windows.h>
 #include <wchar.h> // 用于 wcsncpy
+<<<<<<< HEAD
 #include <string.h> // 用于 memcmp
+=======
+>>>>>>> e9d338dda42db1afadaff17f249fa1b77f39b0cb
 #include <map>
 #include <string>
 #include <vector>
@@ -19,7 +22,10 @@
 #define ID_QUIT           1002
 #define ID_TRAY_ICON      1003
 #define ID_TOGGLE_REPEAT  1004
+<<<<<<< HEAD
 #define ID_TOGGLE_F6Y     1005
+=======
+>>>>>>> e9d338dda42db1afadaff17f249fa1b77f39b0cb
 #define WM_RELOAD_MAPPINGS (WM_USER + 2)
 
 // 托盘图标数据结构
@@ -436,6 +442,7 @@ void ToggleActiveState(HWND hWnd) {
     UpdateTrayMenu(hWnd);
 }
 
+<<<<<<< HEAD
 // --- better f6 to y：注册表级按键重映射（按下 Y 键 -> 系统收到 F6） ---
 // 对应 f6.reg 写入的 Scancode Map（HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout）
 // 20 字节：版本/标志/条目数 2（1 条映射 + 终止符），映射 DWORD 0x00400015（新键 0x40=F6，旧键 0x15=Y）
@@ -486,6 +493,8 @@ static void ShowTrayBalloon(const wchar_t *title, const wchar_t *text) {
     Shell_NotifyIcon(NIM_MODIFY, &nid);
 }
 
+=======
+>>>>>>> e9d338dda42db1afadaff17f249fa1b77f39b0cb
 // --- 托盘图标和菜单函数 ---
 
 // 修正：使用传入的 hWnd 作为图标宿主
@@ -530,6 +539,7 @@ void UpdateTrayMenu(HWND hWnd) {
     UINT repeatFlags = MF_BYPOSITION | MF_STRING;
     if (repeat_on_hold) repeatFlags |= MF_CHECKED;
     InsertMenuW(hMenu, 1, repeatFlags, ID_TOGGLE_REPEAT, L"按住时重复触发 (F6/F7)");
+<<<<<<< HEAD
 
     // better f6 to y：注册表级 Y->F6 重映射，勾选状态实时读注册表
     UINT f6yFlags = MF_BYPOSITION | MF_STRING;
@@ -541,6 +551,14 @@ void UpdateTrayMenu(HWND hWnd) {
 
     // 修正：明确调用 InsertMenuW (Unicode)
     InsertMenuW(hMenu, 4, MF_BYPOSITION | MF_STRING, ID_QUIT, L"退出");
+=======
+    
+    // 分隔符
+    InsertMenuW(hMenu, 2, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
+    
+    // 修正：明确调用 InsertMenuW (Unicode)
+    InsertMenuW(hMenu, 3, MF_BYPOSITION | MF_STRING, ID_QUIT, L"退出");
+>>>>>>> e9d338dda42db1afadaff17f249fa1b77f39b0cb
     
     POINT pt;
     GetCursorPos(&pt);
@@ -580,6 +598,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
                     repeat_on_hold = !repeat_on_hold;
                     UpdateTrayMenu(hWnd);
                     break;
+<<<<<<< HEAD
                 case ID_TOGGLE_F6Y: {
                     bool enable = !IsF6YMappingActive();
                     if (ApplyF6YMapping(enable)) {
@@ -592,6 +611,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
                     }
                     break;
                 }
+=======
+>>>>>>> e9d338dda42db1afadaff17f249fa1b77f39b0cb
                 case ID_QUIT:
                     PostQuitMessage(0);
                     break;
